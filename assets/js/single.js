@@ -1,9 +1,9 @@
+var repoNameEl = document.querySelector("#repo-name");
 var issueContainerEl = document.querySelector("#issues-container");
 var limitWarningEl = document.querySelector("#limit-warning");
 
 
 var getRepoIssues = function (repo) {
-    console.log(repo);
     var apiUrl = "https://api.github.com/repos/" + repo + "/issues?direction=asc";
 
     fetch(apiUrl).then(function (response) {
@@ -57,6 +57,7 @@ var displayIssues = function (issues) {
         // append to container
         issueEl.appendChild(typeEl);
 
+        // append to the dom
         issueContainerEl.appendChild(issueEl);
     }
 }
@@ -65,8 +66,9 @@ var displayWarning = function (repo) {
     // add text to warning container
     limitWarningEl.textContent = "To see more than 30 issues, visit ";
 
+    //create link element
     var linkEl = document.createElement("a");
-    linkEl.textContent = "See More Issues on GitHub.com";
+    linkEl.textContent = "GitHub.com";
     linkEl.setAttribute("href", "https://github.com/" + repo + "/issues");
     linkEl.setAttribute("target", "_blank");
 
@@ -75,4 +77,4 @@ var displayWarning = function (repo) {
 };
 
 
-getRepoIssues("twitter/chill");
+getRepoIssues("facebook/react");
